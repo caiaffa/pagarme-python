@@ -17,9 +17,9 @@ class Transaction(Action):
 		url = self.api.get_url(['transactions', id])
 		return super(Transaction, self).search(url)
 
-	def list(self):
+	def list(self, data={}):
 		url = self.api.get_url(['transactions'])
-		return super(Transaction, self).list(url)
+		return super(Transaction, self).list(url, data)
 
 	def create_key(self, data):
 		if not data.get('encryption_key', None):
