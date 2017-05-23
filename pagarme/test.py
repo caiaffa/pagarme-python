@@ -1,6 +1,7 @@
 from transaction import Transaction
 from plan import Plan
 from card import Card
+from bank_account import BankAccount
 import pprint
 
 ###
@@ -21,5 +22,24 @@ import pprint
 # find pprint.pprint (Plan().find('160811'))
 # list pprint.pprint (Plan().list())
 # change pprint.pprint (Plan().change(160811, data={'name':'plano felipe'}))
+
+###
+# Bank_account
+###
+# create
+'''
+data = {
+	'bank_code':'341',
+	'agencia':'0932',
+	'conta':'58054',
+	'conta_dv':'1',
+	'document_number':'35146484252',
+	'legal_name':'Luis',
+}
+pprint.pprint(BankAccount().create(data))
+'''
+# find pprint.pprint (BankAccount().find('17482546'))
+# list pprint.pprint (BankAccount().list())
+
 
 
