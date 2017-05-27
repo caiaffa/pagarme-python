@@ -2,6 +2,7 @@ from transaction import Transaction
 from plan import Plan
 from card import Card
 from bank_account import BankAccount
+from customer import Customer
 import pprint
 
 ###
@@ -40,6 +41,31 @@ pprint.pprint(BankAccount().create(data))
 '''
 # find pprint.pprint (BankAccount().find('17482546'))
 # list pprint.pprint (BankAccount().list())
+'''
+###
+# Customer
+###
 
+address = {
+	'street':'Rua teste',
+	'street_number': '101',
+	'neighborhood': 'teste',
+	'zipcode':'25845000',
+}
 
+phone = {
+	'ddd':'24',
+	'number':'999887766',
+}
 
+data = {
+	'document_number':'18152564000105',
+	'name':'cliente teste',
+	'email':'teste@teste.com',
+	'address':address,
+	'phone':phone,
+}
+pprint.pprint(Customer().create(data))
+'''
+# find pprint.pprint (Customer().find('191762'))
+# list pprint.pprint (Customer().list())
