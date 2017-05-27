@@ -7,17 +7,17 @@ class BankAccount(Action):
 
 	def create(self, data):
 		if not data.get('bank_code', None):
-			raise RequiredParameters('Bank Account bank_code not informed')
+			raise RequiredParameters('Bank Account create bank_code not informed')
 		elif not data.get('agencia', None) :
-			raise RequiredParameters('Bank Account agencia not informed')
+			raise RequiredParameters('Bank Account create agencia not informed')
 		elif not data.get('conta', None) :
-			raise RequiredParameters('Bank Account conta not informed')
+			raise RequiredParameters('Bank Account create conta not informed')
 		elif not data.get('conta_dv', None) :
-			raise RequiredParameters('Bank Account conta_dv not informed')
+			raise RequiredParameters('Bank Account create conta_dv not informed')
 		elif not data.get('document_number', None) :
-			raise RequiredParameters('Bank Account document_number not informed')
+			raise RequiredParameters('Bank Account create document_number not informed')
 		elif not data.get('legal_name', None) :
-			raise RequiredParameters('Bank Account legal_name not informed')
+			raise RequiredParameters('Bank Account create legal_name not informed')
 		url = self.api.get_url(['bank_accounts'])
 		return super(BankAccount, self).create(url, data)
 

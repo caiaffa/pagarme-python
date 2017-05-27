@@ -3,7 +3,7 @@ from action import Action
 from exception import RequiredParameters
 
 
-class Plan(Action):
+class Subscription(Action):
 
 	def create(self, data):
 		if not data.get('amount', None):
@@ -13,19 +13,20 @@ class Plan(Action):
 		elif not data.get('name', None) :
 			raise RequiredParameters('Plan create name not informed')
 		url = self.api.get_url(['plans'])
-		return super(Plan, self).create(url, data)
+		return super(Subscription, self).create(url, data)
 
 	def find(self, id):
-		url = self.api.get_url(['plans', id])
-		return super(Plan, self).search(url)
+		url = self.api.get_url(['subscriptions', id])
+		return super(Subscription, self).search(url)
 
 	def list(self, data={}):
-		url = self.api.get_url(['plans'])
-		return super(Plan, self).list(url, data)
+		url = self.api.get_url(['subscriptions'])
+		return super(Subscription, self).list(url, data)
 
 	def change(self, id, data={}):
-		url = self.api.get_url(['plans', id])
-		return super(Plan, self).change(url, data)
+		url = self.api.get_url(['subscriptions', id])
+		return super(Subscription, self).change(url, data)
 
-
-
+	def cancel(self, id, data={}):
+		url = self.api.get_url(['subscriptions', id, cancel])
+		return super(Subscription, self).refund_post(url, data)

@@ -8,11 +8,11 @@ class Card(Action):
 	def create(self, data):
 		if not data.get('card_hash', None):
 			if not data.get('card_number', None):
-				raise RequiredParameters('Card card_number not informed')
+				raise RequiredParameters('Card create card_number not informed')
 			elif not data.get('holder_name', None):
-				raise RequiredParameters('Card holder_name not informed')
+				raise RequiredParameters('Card create holder_name not informed')
 			elif not data.get('card_expiration_date', None):
-				raise RequiredParameters('Card card_expiration_date not informed')
+				raise RequiredParameters('Card create card_expiration_date not informed')
 		url = self.api.get_url(['cards'])
 		return super(Card, self).create(url, data)
 
