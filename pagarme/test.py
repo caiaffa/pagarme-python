@@ -3,6 +3,7 @@ from plan import Plan
 from card import Card
 from bank_account import BankAccount
 from customer import Customer
+from subscription Subscription
 import pprint
 
 ###

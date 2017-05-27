@@ -6,13 +6,15 @@ from exception import RequiredParameters
 class Subscription(Action):
 
 	def create(self, data):
-		if not data.get('amount', None):
-			raise RequiredParameters('Plan create amount not informed')
-		elif not data.get('days', None) :
-			raise RequiredParameters('Plan create days not informed')
-		elif not data.get('name', None) :
-			raise RequiredParameters('Plan create name not informed')
-		url = self.api.get_url(['plans'])
+		if not data.get('plan_id', None):
+			raise RequiredParameters('Subscription create plan_id not informed')
+		elif not data.get('card_hash', None) :
+			raise RequiredParameters('Subscription create card_hash not informed')
+		elif not data.get('customer', None) :
+			raise RequiredParameters('Subscription create customer not informed')
+		elif not data['customer'].get('email', None) :
+			raise RequiredParameters('Subscription create email not informed')
+		url = self.api.get_url(['subscriptions'])
 		return super(Subscription, self).create(url, data)
 
 	def find(self, id):
@@ -24,6 +26,8 @@ class Subscription(Action):
 		return super(Subscription, self).list(url, data)
 
 	def change(self, id, data={}):
+		if not data.get('payment_method', None):
+			raise RequiredParameters('Subscription change payment_method not informed')
 		url = self.api.get_url(['subscriptions', id])
 		return super(Subscription, self).change(url, data)
 
