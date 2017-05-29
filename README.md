@@ -17,4 +17,4 @@ Visit [https://docs.pagar.me/api/](https://docs.pagar.me/api/) for api reference
 
 ## Author
 
-Originally by [Luis Felipe Caiaffa](https://github.com/caiaffa/) 
+by [Luis Felipe Caiaffa](https://github.com/caiaffa/) 
