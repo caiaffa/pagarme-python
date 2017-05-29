@@ -3,7 +3,8 @@ from plan import Plan
 from card import Card
 from bank_account import BankAccount
 from customer import Customer
-from subscription Subscription
+from subscription import  Subscription
+from recipient import Recipient
 import pprint
 
 ###
@@ -24,7 +25,7 @@ import pprint
 # find pprint.pprint (Plan().find('160811'))
 # list pprint.pprint (Plan().list())
 # change pprint.pprint (Plan().change(160811, data={'name':'plano felipe'}))
-
+# 162669
 ###
 # Bank_account
 ###
@@ -70,3 +71,17 @@ pprint.pprint(Customer().create(data))
 '''
 # find pprint.pprint (Customer().find('191762'))
 # list pprint.pprint (Customer().list())
+
+###
+# Subscription
+###
+
+customer = {
+	'email':'lfa.luisfelipe@gmail.com',
+}
+
+data = {
+	'plan_id':'162669',
+	'customer':customer,
+}
+pprint.pprint(Subscription().create_ticket(data))

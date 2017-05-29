@@ -8,8 +8,29 @@ class Subscription(Action):
 	def create(self, data):
 		if not data.get('plan_id', None):
 			raise RequiredParameters('Subscription create plan_id not informed')
-		elif not data.get('card_hash', None) :
-			raise RequiredParameters('Subscription create card_hash not informed')
+		elif not data.get('card_hash', None) and not data.get('card_id', None):
+			raise RequiredParameters('Subscription create card_hash  or card_id not informed')
+		elif not data.get('customer', None) :
+			raise RequiredParameters('Subscription create customer not informed')
+		elif not data['customer'].get('email', None) :
+			raise RequiredParameters('Subscription create email not informed')
+		url = self.api.get_url(['subscriptions'])
+		return super(Subscription, self).create(url, data)
+
+	def create_ticket(self, data):
+		data['payment_method'] = 'boleto'
+		if not data.get('plan_id', None):
+			raise RequiredParameters('Subscription create plan_id not informed')
+		elif not data.get('customer', None) :
+			raise RequiredParameters('Subscription create customer not informed')
+		elif not data['customer'].get('email', None) :
+			raise RequiredParameters('Subscription create email not informed')
+		url = self.api.get_url(['subscriptions'])
+		return super(Subscription, self).create(url, data)
+
+	def create_split(self, data):
+		if not data.get('plan_id', None):
+			raise RequiredParameters('Subscription create plan_id not informed')
 		elif not data.get('customer', None) :
 			raise RequiredParameters('Subscription create customer not informed')
 		elif not data['customer'].get('email', None) :
@@ -32,5 +53,5 @@ class Subscription(Action):
 		return super(Subscription, self).change(url, data)
 
 	def cancel(self, id, data={}):
-		url = self.api.get_url(['subscriptions', id, cancel])
+		url = self.api.get_url(['subscriptions', id, 'cancel'])
 		return super(Subscription, self).refund_post(url, data)
