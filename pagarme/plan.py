@@ -26,6 +26,3 @@ class Plan(Action):
 	def change(self, id, data={}):
 		url = self.api.get_url(['plans', id])
 		return super(Plan, self).change(url, data)
-
-
-

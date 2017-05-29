@@ -8,8 +8,35 @@ class Transaction(Action):
 	def create(self, data):
 		if not data.get('amount', None):
 			raise RequiredParameters('Transaction create amount not informed')
-		elif not data.get('payment_method', None) or data.get('card_hash', None):
-			raise RequiredParameters('Transaction create payment_method or card_hash not informed')
+		
+		if data.get('card_id', None):
+			if not data.get('customer', None):
+				raise RequiredParameters('Transaction create customer not informed')
+			elif not data['customer'].get('document_number', None):
+				raise RequiredParameters('Transaction create document_number not informed')
+			elif not data['customer'].get('name', None):
+				raise RequiredParameters('Transaction create name not informed')
+			elif not data['customer'].get('email', None):
+				raise RequiredParameters('Transaction create email not informed')
+			elif not data['customer'].get('address', None):
+				raise RequiredParameters('Transaction create address not informed')
+			elif not data['customer']['address'].get('zipcode', None):
+				raise RequiredParameters('Transaction create zipcode not informed')
+			elif not data['customer']['address'].get('street', None):
+				raise RequiredParameters('Transaction create street not informed')
+			elif not data['customer']['address'].get('street_number', None):
+				raise RequiredParameters('Transaction create street_number not informed')
+			elif not data['customer']['address'].get('neighborhood', None):
+				raise RequiredParameters('Transaction create neighborhood not informed')
+			elif not data['customer'].get('phone', None):
+				raise RequiredParameters('Transaction create phone not informed')
+			elif not data['customer']['phone'].get('ddd', None):
+				raise RequiredParameters('Transaction create ddd not informed')
+			elif not data['customer']['phone'].get('number', None):
+				raise RequiredParameters('Transaction create number not informed')
+		else:
+			if not data.get('payment_method', None) or data.get('card_hash', None):
+				raise RequiredParameters('Transaction create payment_method or card_hash not informed')
 		url = self.api.get_url(['transactions'])
 		return super(Transaction, self).create(url, data)
 
@@ -106,3 +133,5 @@ class Transaction(Action):
 			raise RequiredParameters('Transaction test_ticket status not informed')
 		url = self.api.get_url(['transactions', id])
 		return super(Transaction, self).create(url, data)
+
+# OK
