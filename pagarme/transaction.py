@@ -133,5 +133,3 @@ class Transaction(Action):
 			raise RequiredParameters('Transaction test_ticket status not informed')
 		url = self.api.get_url(['transactions', id])
 		return super(Transaction, self).create(url, data)
-
-# OK

@@ -47,7 +47,7 @@ def main_api():
 
     global __main_api__
     if __main_api__ is None:
-        __main_api__ = Api(api_key='ak_test_B5KsTP5xk9uYkf46coSho9zRm6avrN')
+        __main_api__ = Api(api_key='TOKEN HERE')
     return __main_api__
 
 
